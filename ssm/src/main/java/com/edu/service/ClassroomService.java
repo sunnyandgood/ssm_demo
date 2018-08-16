@@ -1,9 +1,7 @@
 package com.edu.service;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.edu.bean.User;
-
-import java.util.List;
+import com.edu.bean.Classroom;
 
 /**
  * <p>
@@ -13,6 +11,6 @@ import java.util.List;
  * @author sunny
  * @since 2018-08-16
  */
-public interface UserService extends IService<User> {
-    List<User> selectUserClassroom();
+public interface ClassroomService extends IService<Classroom> {
+
 }

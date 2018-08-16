@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>学生列表</title>
 	<jsp:include page="/resources/layout/_css.jsp"/>
 
 	<!-- Latest compiled and minified CSS -->
@@ -19,6 +19,7 @@
 				</div>
 				<div class="ibox-content">
 					<table id="table"> </table>
+					<div class="btn btn-primary" onclick="removeAll()">批量删除</div>
 				</div>
 			</div>
 		</div>
@@ -31,7 +32,7 @@
 <script src="${ctx}/resources/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
 <script>
     $('#table').bootstrapTable({
-		url:'${ctx}/user/list',
+		url:'${ctx}/user/listAll',
         columns: [{
            checkbox:true
 		}, {
@@ -61,6 +62,17 @@
         }, {
             field: 'email',
             title: '邮箱'
+        },{
+            field: 'birthday',
+            title: '生日'
+        },{
+            field: 'classroom',
+            title: '班级',
+            formatter:function(v1,v2,v3){
+                if(v1!=null){
+                    return v1['name'];
+                }
+            },
         },{
             field: 'caozuo',
             title: '操作',
@@ -95,7 +107,7 @@
             // });
             layer.open({
                 type: 2,
-                area: ['800px', '350px'],
+                area: ['800px', '500px'],
                 content: '${ctx}/user/preUpdate/' + row['id'] //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
             });
         },
@@ -111,5 +123,24 @@
             }
         }
     };
+
+    function removeAll() {
+		if (confirm("全部删除？")){
+		    arr = $('#table').bootstrapTable('getSelections');
+		    str = "";
+		    for(i in arr){
+		        str += arr[i]['id'] + ",";
+			}
+			ids = str.substring(0,str.length-1);
+
+		    $.post('${ctx}/user/removeAll',{'ids':ids},function (r) {
+                if(r.code==200){
+                    $('#table').bootstrapTable('refresh');
+                }
+                layer.msg(r.message);
+            });
+		}
+    }
+
 </script>
 </html>

@@ -1,19 +1,47 @@
 package com.edu.bean;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.enums.IdType;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 
+/**
+ * <p>
+ * InnoDB free: 4096 kB
+ * </p>
+ *
+ * @author sunny
+ * @since 2018-08-16
+ */
 public class User implements Serializable {
-    private Integer id;
-
-    private String userName;
-
-    private String gender;
-
-    private String email;
-
-    private Integer cId;
 
     private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+    private String userName;
+    private String gender;
+    private String email;
+    private Integer cId;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
+
+    @TableField(exist = false)
+    private Classroom classroom;
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
 
     public Integer getId() {
         return id;
@@ -28,7 +56,7 @@ public class User implements Serializable {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+        this.userName = userName;
     }
 
     public String getGender() {
@@ -36,7 +64,7 @@ public class User implements Serializable {
     }
 
     public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
+        this.gender = gender;
     }
 
     public String getEmail() {
@@ -44,7 +72,7 @@ public class User implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public Integer getcId() {
@@ -53,5 +81,26 @@ public class User implements Serializable {
 
     public void setcId(Integer cId) {
         this.cId = cId;
+    }
+
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email='" + email + '\'' +
+                ", cId=" + cId +
+                ", birthday=" + birthday +
+                ", classroom=" + classroom +
+                '}';
     }
 }

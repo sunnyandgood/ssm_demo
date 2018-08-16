@@ -16,4 +16,9 @@ public class RenderController {
     public String preUpdate(){
         return "user/pre";
     }
+
+    @GetMapping("/user/add")
+    public String add(){
+        return "user/user_add";
+    }
 }
