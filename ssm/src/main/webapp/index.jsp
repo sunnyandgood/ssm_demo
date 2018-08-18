@@ -15,7 +15,7 @@
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
 
-    <jsp:include page="/resources/layout/_css.jsp"/>
+    <jsp:include page="/resources/layout/_css.jsp"/>`
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">

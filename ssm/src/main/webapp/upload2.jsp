@@ -33,10 +33,9 @@
 </body>
 <jsp:include page="/resources/layout/_script.jsp"/>
 <script src="${ctx}/resources/js/plugins/Huploadify/jquery.Huploadify.js"></script>
-
+<script src="${ctx}/resources/js/my.js"></script>
 <%--<jsp:include page="/resources/layout/_script.jsp"/>--%>
 <%--<script src="${ctx}/resources/js/plugins/Huploadify/jquery.Huploadify.js"></script>--%>
-<script src="${ctx}/resources/js/my.js"></script>
 <%--<script src="${ctx}/resources/js/my.js"></script>--%>
 <script>
     upload($('#imageUpload'),true,'${ctx}/upload2','${ctx}');
